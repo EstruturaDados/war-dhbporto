@@ -1,7 +1,6 @@
 // ============================================================================
-//         PROJETO WAR ESTRUTURADO - DESAFIO DE CÓDIGO
+//PROJETO WAR ESTRUTURADO - DESAFIOS DE CÓDIGO
 // ============================================================================
-//        
 // ============================================================================
 //
 // OBJETIVOS:
@@ -31,7 +30,6 @@
 
 // --- Função Principal (main) ---
 // Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
-int main() {
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
@@ -50,7 +48,83 @@ int main() {
 
     // 3. Limpeza:
     // - Ao final do jogo, libera a memória alocada para o mapa para evitar vazamentos de memória.
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> 
+#include <locale.h> 
 
+// Estrutura para representar um Territorio
+struct Territorio
+{
+    char nome [30];
+    char dominado_por [20]; // Ocupante do territorio
+    int tropas;
+};
+
+int main(){
+    
+    // Variaveis
+    int cartas = 5;
+    struct Territorio mapas[cartas]; 
+    
+    printf("-------------------- WAR ----------------------\n\n\n");
+    
+    printf("===============================================\n");
+    printf("----------- Cadastro de Territorios -----------\n"); 
+    printf("===============================================\n\n");
+
+    // =============================================================
+    // LOOP DE CADASTRO 
+    // =============================================================
+    
+    printf("Iniciando o cadastro de %i territorios\n", cartas); 
+    printf("--------------------------------------\n");
+    
+    for (int id = 0; id < cartas; id++)
+    {
+      
+        printf("Mapa numero %i\n", id + 1); 
+        
+        printf("Nome do territorio: ");
+        fflush(stdout); 
+        scanf(" %29s", mapas[id].nome); 
+
+        printf("Dominado por (Ex: Exercito_Azul): ");
+        fflush(stdout);
+        scanf(" %19s", mapas[id].dominado_por);
+
+        printf("Numero de tropas: ");
+        fflush(stdout);
+        scanf("%i", &mapas[id].tropas); 
+        
+        printf("--------------------------------------\n");
+    }
+
+    // =============================================================
+    // IMPRESSAO FORMATADA DO RESULTADO
+    // =============================================================
+
+    printf("\n\n=== MAPA DO MUNDO - ESTADO ATUAL ===\n\n");
+    
+    for (int id = 0; id < cartas; id++) {
+        
+        printf("TERRITORIO %i:\n", id + 1); 
+        printf("- Nome: %s\n", mapas[id].nome);
+        printf("- Dominado por: %s\n", mapas[id].dominado_por);
+        printf("- Tropas: %i\n", mapas[id].tropas);
+        
+        if (id < cartas - 1) {
+            printf("\n");
+        }
+    }
+    
+    // --- PAUSA PARA MANTER A TELA ABERTA ---
+    printf("\n===============================================\n");
+    printf("Processo finalizado. Pressione ENTER para sair.");
+    
+    fflush(stdin); 
+    getchar(); 
+    
     return 0;
 }
 
